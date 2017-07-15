@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Dex.iml" filepath="$PROJECT_DIR$/.idea/modules/Dex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dexhelper/dexhelper.iml" filepath="$PROJECT_DIR$/.idea/modules/dexhelper/dexhelper.iml" group="dexhelper" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dexhelper/dexhelper_main.iml" filepath="$PROJECT_DIR$/.idea/modules/dexhelper/dexhelper_main.iml" group="dexhelper" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dexhelper/dexhelper_test.iml" filepath="$PROJECT_DIR$/.idea/modules/dexhelper/dexhelper_test.iml" group="dexhelper" />
+    </modules>
+  </component>
+</project>
