@@ -1,15 +1,11 @@
 package com.ximsfei.dexhelper
 
 import com.android.build.gradle.api.ApplicationVariant
-
-import com.ximsfei.dexhelper.dex.HeaderItem
 import com.ximsfei.dexhelper.utils.FileUtils
 import com.ximsfei.dexhelper.utils.Log
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
 import java.util.zip.ZipFile
 
 /**
@@ -35,7 +31,7 @@ class DexPlugin implements Plugin<Project> {
                                     Log.d("dex", entry.name)
                                     def dexFile = new File(dexFolder, entry.name)
                                     FileUtils.copyToFile(apkFile.getInputStream(entry), dexFile)
-                                    parseDex(dexFile)
+                                    DexParser.parse(dexFile)
                                 }
                             }
                         }
@@ -43,12 +39,6 @@ class DexPlugin implements Plugin<Project> {
                 }
             }
         }
-    }
-
-    static def parseDex(File dexFile) {
-        ByteBuffer data = ByteBuffer.wrap(FileUtils.readFile(dexFile))
-        data.order(ByteOrder.LITTLE_ENDIAN);
-        Log.d(HeaderItem.parse(data).toString())
     }
 
 }

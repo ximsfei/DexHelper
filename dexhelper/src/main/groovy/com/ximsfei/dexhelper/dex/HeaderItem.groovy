@@ -1,9 +1,6 @@
 package com.ximsfei.dexhelper.dex
 
 import java.nio.ByteBuffer
-import java.nio.ByteOrder
-
-import static com.ximsfei.dexhelper.utils.Size.*
 
 /**
  * magic ubyte[8]
@@ -30,127 +27,35 @@ import static com.ximsfei.dexhelper.utils.Size.*
  * data_size uint
  * data_off uint
  */
-class HeaderItem {
+class HeaderItem extends BaseItem {
     static final int MAGIC = UBYTE * 8;
     static final int SIGNATURE = UBYTE * 20;
     static final int CHECKSUM = UINT;
     static final int HEADER_ITEM = MAGIC + CHECKSUM + SIGNATURE + (20 * UINT); // 0x70
 
-    private byte[] magic
-    private int checksum
-    private byte[] signature
-    private int fileSize
-    private int headerSize
-    private int endianTag
-    private int linkSize
-    private int linkOff
-    private int mapOff
-    private int stringIdsSize
-    private int stringIdsOff
-    private int typeIdsSize
-    private int typeIdsOff
-    private int protoIdsSize
-    private int protoIdsOff
-    private int fieldIdsSize
-    private int fieldIdsOff
-    private int methodIdsSize
-    private int methodIdsOff
-    private int classDefsSize
-    private int classDefsOff
-    private int dataSize
-    private int dataOff
-
-    byte[] getMagic() {
-        return magic
-    }
-
-    int getChecksum() {
-        return checksum
-    }
-
-    byte[] getSignature() {
-        return signature
-    }
-
-    int getFileSize() {
-        return fileSize
-    }
-
-    int getHeaderSize() {
-        return headerSize
-    }
-
-    int getEndianTag() {
-        return endianTag
-    }
-
-    int getLinkSize() {
-        return linkSize
-    }
-
-    int getLinkOff() {
-        return linkOff
-    }
-
-    int getMapOff() {
-        return mapOff
-    }
-
-    int getStringIdsSize() {
-        return stringIdsSize
-    }
-
-    int getStringIdsOff() {
-        return stringIdsOff
-    }
-
-    int getTypeIdsSize() {
-        return typeIdsSize
-    }
-
-    int getTypeIdsOff() {
-        return typeIdsOff
-    }
-
-    int getProtoIdsSize() {
-        return protoIdsSize
-    }
-
-    int getProtoIdsOff() {
-        return protoIdsOff
-    }
-
-    int getFieldIdsSize() {
-        return fieldIdsSize
-    }
-
-    int getFieldIdsOff() {
-        return fieldIdsOff
-    }
-
-    int getMethodIdsSize() {
-        return methodIdsSize
-    }
-
-    int getMethodIdsOff() {
-        return methodIdsOff
-    }
-
-    int getClassDefsSize() {
-        return classDefsSize
-    }
-
-    int getClassDefsOff() {
-        return classDefsOff
-    }
-
-    int getDataSize() {
-        return dataSize
-    }
-
-    int getDataOff() {
-        return dataOff
-    }
+    byte[] magic
+    int checksum
+    byte[] signature
+    int fileSize
+    int headerSize
+    int endianTag
+    int linkSize
+    int linkOff
+    int mapOff
+    int stringIdsSize
+    int stringIdsOff
+    int typeIdsSize
+    int typeIdsOff
+    int protoIdsSize
+    int protoIdsOff
+    int fieldIdsSize
+    int fieldIdsOff
+    int methodIdsSize
+    int methodIdsOff
+    int classDefsSize
+    int classDefsOff
+    int dataSize
+    int dataOff
 
     @Override
     String toString() {
@@ -181,9 +86,8 @@ class HeaderItem {
     }
 
     static def HeaderItem parse(ByteBuffer dexBuffer) {
+        ByteBuffer data = wrapData(dexBuffer)
         HeaderItem item = new HeaderItem()
-        ByteBuffer data = dexBuffer.duplicate()
-        data.order(ByteOrder.LITTLE_ENDIAN);
         item.magic = new byte[MAGIC]
         data.get(item.magic)
         item.checksum = data.getInt()

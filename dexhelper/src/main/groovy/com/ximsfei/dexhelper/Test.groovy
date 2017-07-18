@@ -1,3 +1,3 @@
 package com.ximsfei.dexhelper
 
-DexPlugin.parseDex(new File("/Users/ximsfei/work/Hello.dex"))
+DexParser.parse(new File("/Users/ximsfei/work/Hello.dex"))
