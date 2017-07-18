@@ -43,7 +43,7 @@ class FileUtils {
             }
         }
 
-        return baos.toByteArray();
+        baos.toByteArray();
     }
 
     def static copyToFile(InputStream inputStream, File destFile) {

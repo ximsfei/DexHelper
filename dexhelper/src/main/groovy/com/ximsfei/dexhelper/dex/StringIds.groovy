@@ -53,7 +53,7 @@ class StringIds extends BaseItem {
 
         @Override
         String toString() {
-            return "\nStringDataItem: \n[utf16Size: " + Integer.toUnsignedString(utf16Size) +
+            "\nStringDataItem: \n[utf16Size: " + Integer.toUnsignedString(utf16Size) +
                     "]\n[data: " + new String(data) +
                     "]\n";
         }

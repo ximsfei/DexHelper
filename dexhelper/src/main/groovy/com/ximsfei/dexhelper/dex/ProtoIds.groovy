@@ -36,7 +36,7 @@ class ProtoIds extends BaseItem {
 
         @Override
         String toString() {
-            return "\nProtoIdItem: \n[shortyIdx: " + Integer.toUnsignedString(shortyIdx) +
+            "\nProtoIdItem: \n[shortyIdx: " + Integer.toUnsignedString(shortyIdx) +
                     "]\n[returnTypeIdx: " + Integer.toUnsignedString(returnTypeIdx) +
                     "]\n[parametersOff: " + Integer.toUnsignedString(parametersOff) +
                     "]\n";

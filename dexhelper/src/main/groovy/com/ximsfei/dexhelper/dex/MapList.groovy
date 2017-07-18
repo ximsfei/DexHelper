@@ -17,7 +17,7 @@ class MapList extends BaseItem {
         for (item in mapItemList) {
             stringBuilder.append(item.toString())
         }
-        return stringBuilder.toString()
+        stringBuilder.toString()
     }
 
     static def MapList parse(ByteBuffer dexBuffer, HeaderItem headerItem) {
@@ -44,7 +44,7 @@ class MapList extends BaseItem {
 
         @Override
         String toString() {
-            return "\nMapItem: \n[type: " + Short.toUnsignedInt(type) +
+            "\nMapItem: \n[type: " + Short.toUnsignedInt(type) +
                     "]\n[unused: " + Short.toUnsignedInt(unused) +
                     "]\n[size: " + Integer.toUnsignedString(size) +
                     "]\n[offset: " + Integer.toUnsignedString(offset) +

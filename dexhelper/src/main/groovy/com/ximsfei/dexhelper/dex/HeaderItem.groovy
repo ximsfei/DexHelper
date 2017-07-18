@@ -59,7 +59,7 @@ class HeaderItem extends BaseItem {
 
     @Override
     String toString() {
-        return "\nHeaderItem: \n[magic: " + new String(magic).trim() +
+        "\nHeaderItem: \n[magic: " + new String(magic).trim() +
                 "]\n[checksum: " + Integer.toUnsignedString(checksum) +
                 "]\n[signature: " + signature.inspect() +
                 "]\n[fileSize: " + Integer.toUnsignedString(fileSize) +

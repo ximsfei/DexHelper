@@ -32,7 +32,7 @@ class TypeIds extends BaseItem {
 
         @Override
         String toString() {
-            return "\nTypeIdItem: \n[descriptorIdx: " + Integer.toUnsignedString(descriptorIdx) + "]\n";
+            "\nTypeIdItem: \n[descriptorIdx: " + Integer.toUnsignedString(descriptorIdx) + "]\n";
         }
 
         static TypeIdItem parse(ByteBuffer dexBuffer, int offset) {
