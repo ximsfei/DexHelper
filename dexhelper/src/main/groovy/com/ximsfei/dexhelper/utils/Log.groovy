@@ -10,6 +10,6 @@ class Log {
     }
 
     def static d(String tag, String msg) {
-        println(TAG + tag + " = " + msg)
+        println(TAG + tag + "=========" + msg)
     }
 }
