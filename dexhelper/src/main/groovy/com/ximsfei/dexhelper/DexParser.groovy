@@ -2,6 +2,7 @@ package com.ximsfei.dexhelper
 
 import com.ximsfei.dexhelper.dex.HeaderItem
 import com.ximsfei.dexhelper.dex.MapList
+import com.ximsfei.dexhelper.dex.ProtoIds
 import com.ximsfei.dexhelper.dex.StringIds
 import com.ximsfei.dexhelper.dex.TypeIds
 import com.ximsfei.dexhelper.utils.FileUtils
@@ -22,5 +23,7 @@ class DexParser {
         Log.d("stringIds", stringIds.toString())
         TypeIds typeIds = TypeIds.parse(data, headerItem)
         Log.d("typeIds", typeIds.toString())
+        ProtoIds protoIds = ProtoIds.parse(data, headerItem)
+        Log.d("protoIds", protoIds.toString())
     }
 }

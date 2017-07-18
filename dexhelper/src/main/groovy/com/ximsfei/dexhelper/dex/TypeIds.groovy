@@ -2,9 +2,6 @@ package com.ximsfei.dexhelper.dex
 
 import java.nio.ByteBuffer
 
-/**
- * Created by ximsfei on 2017/7/18.
- */
 class TypeIds extends BaseItem {
     List<TypeIdItem> typeIdItemList = new ArrayList<>()
 
@@ -19,8 +16,8 @@ class TypeIds extends BaseItem {
 
     static TypeIds parse(ByteBuffer dexBuffer, HeaderItem headerItem) {
         TypeIds typeIds = new TypeIds()
-        for (i in 0..headerItem.stringIdsSize - 1) {
-            TypeIdItem idItem = TypeIdItem.parse(dexBuffer, headerItem.stringIdsOff + i * TypeIdItem.TYPE_ID_ITEM)
+        for (i in 0..headerItem.typeIdsSize - 1) {
+            TypeIdItem idItem = TypeIdItem.parse(dexBuffer, headerItem.typeIdsOff + i * TypeIdItem.TYPE_ID_ITEM)
             typeIds.typeIdItemList.add(idItem)
         }
         typeIds
