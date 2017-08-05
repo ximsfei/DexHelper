@@ -32,9 +32,14 @@ apply plugin: 'com.ximsfei.dexhelper'
 ### Run With Gradle
 
 ```
-$ ./gradlew assemble* -q
+$ ./gradlew assemble -q
+  DexHelper: apk file -> app-debug.apk
   DexHelper: dex file -> classes.dex
-  DexHelper: method count -> 27021
+  DexHelper: method size -> 27022
+  DexHelper: apk file -> app-release-unsigned.apk
+  DexHelper: dex file -> classes.dex
+  DexHelper: method size -> 27021
+
 ```
  
 ## [License Apache](LICENSE)
