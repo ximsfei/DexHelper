@@ -22,6 +22,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
+        // 添加依赖
         classpath 'com.ximsfei:dexhelper:0.0.1'
     }
 }
@@ -31,6 +32,7 @@ buildscript {
 
 ```gradle
 apply plugin: 'com.android.application'
+// 应用插件
 apply plugin: 'com.ximsfei.dexhelper'
 ```
 
@@ -42,6 +44,6 @@ $ ./gradlew assemble* -q
   DexHelper: method size -> 27021
 ```
  
-*注: 默认assembleDebug或assembleRelease*
+*注: 默认assemble\*为assembleDebug或assembleRelease*
 
 ## [License Apache](LICENSE)
