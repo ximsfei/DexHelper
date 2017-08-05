@@ -1,7 +1,6 @@
 package com.ximsfei.dexhelper
 
 import com.android.build.gradle.api.ApplicationVariant
-import com.ximsfei.dexhelper.utils.FileUtils
 import com.ximsfei.dexhelper.utils.Log
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -20,18 +19,13 @@ class DexPlugin implements Plugin<Project> {
                     variant.outputs.each { output ->
                         if (output.outputFile.absolutePath.endsWith(".apk")) {
                             def apkPath = output.outputFile.absolutePath
-                            Log.d("apkPath", apkPath)
-                            Log.d("apkFolder", output.splitFolder.absolutePath)
                             def apkFile = new ZipFile(apkPath)
-                            def dexFolder = new File(output.splitFolder.getParent(), "dex")
-                            Log.d("dexFolder", dexFolder.absolutePath)
                             apkFile.entries().each { entry ->
                                 if (entry.name.startsWith("classes")
                                         && entry.name.endsWith(".dex")) {
-                                    Log.d("dex", entry.name)
-                                    def dexFile = new File(dexFolder, entry.name)
-                                    FileUtils.copyToFile(apkFile.getInputStream(entry), dexFile)
-                                    DexParser.parse(dexFile)
+                                    Log.d("dex file", entry.name)
+                                    DexParser dexParser = new DexParser(apkFile.getInputStream(entry))
+                                    Log.d("method size", String.valueOf(dexParser.headerItem.methodIdsSize))
                                 }
                             }
                         }

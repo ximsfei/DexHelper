@@ -6,44 +6,47 @@ package com.ximsfei.dexhelper.utils
 class FileUtils {
     def static byte[] readFile(File file) throws IOException {
         if (!file.exists()) {
-            throw new RuntimeException(file + ": file not found");
+            throw new RuntimeException(file + ": file not found")
         }
 
         if (!file.isFile()) {
-            throw new RuntimeException(file + ": not a file");
+            throw new RuntimeException(file + ": not a file")
         }
 
         if (!file.canRead()) {
-            throw new RuntimeException(file + ": file not readable");
+            throw new RuntimeException(file + ": file not readable")
         }
 
-        long longLength = file.length();
-        int length = (int) longLength;
+        long longLength = file.length()
+        int length = (int) longLength
         if (length != longLength) {
-            throw new RuntimeException(file + ": file too long");
+            throw new RuntimeException(file + ": file too long")
         }
+        readInputStream(new FileInputStream(file))
+    }
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream(length);
+    def static byte[] readInputStream(InputStream is) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream(is.available())
 
-        InputStream inputStream = null;
+        InputStream inputStream = null
         try {
-            inputStream = new BufferedInputStream(new FileInputStream(file));
-            byte[] buffer = new byte[8192];
-            int bytesRead;
+            inputStream = new BufferedInputStream(is)
+            byte[] buffer = new byte[8192]
+            int bytesRead
             while ((bytesRead = inputStream.read(buffer)) > 0) {
-                baos.write(buffer, 0, bytesRead);
+                baos.write(buffer, 0, bytesRead)
             }
         } finally {
             if (inputStream != null) {
                 try {
-                    inputStream.close();
+                    inputStream.close()
                 } catch (Exception e) {
                     // ignored.
                 }
             }
         }
 
-        baos.toByteArray();
+        baos.toByteArray()
     }
 
     def static copyToFile(InputStream inputStream, File destFile) {
@@ -52,22 +55,22 @@ class FileUtils {
 
     def static copyToFile(InputStream inputStream, File destFile, boolean append) {
         if (!append && destFile.exists()) {
-            destFile.delete();
+            destFile.delete()
         }
         if (!destFile.exists()) {
             destFile.getParentFile().mkdirs()
-            destFile.createNewFile();
+            destFile.createNewFile()
         }
-        FileOutputStream out = new FileOutputStream(destFile, append);
+        FileOutputStream out = new FileOutputStream(destFile, append)
         try {
-            byte[] buffer = new byte[4096];
-            int bytesRead;
+            byte[] buffer = new byte[4096]
+            int bytesRead
             while ((bytesRead = inputStream.read(buffer)) >= 0) {
-                out.write(buffer, 0, bytesRead);
+                out.write(buffer, 0, bytesRead)
             }
         } finally {
-            out.flush();
-            out.close();
+            out.flush()
+            out.close()
         }
     }
 }

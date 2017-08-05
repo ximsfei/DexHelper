@@ -6,24 +6,32 @@ import com.ximsfei.dexhelper.dex.ProtoIds
 import com.ximsfei.dexhelper.dex.StringIds
 import com.ximsfei.dexhelper.dex.TypeIds
 import com.ximsfei.dexhelper.utils.FileUtils
-import com.ximsfei.dexhelper.utils.Log
 
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 class DexParser {
-    static def parse(File dexFile) {
-        ByteBuffer data = ByteBuffer.wrap(FileUtils.readFile(dexFile))
+    HeaderItem headerItem
+    MapList mapList
+    StringIds stringIds
+    TypeIds typeIds
+    ProtoIds protoIds
+
+    DexParser(File file) {
+        init(FileUtils.readFile(file))
+    }
+
+    DexParser(InputStream is) {
+        init(FileUtils.readInputStream(is))
+    }
+
+    def init(byte[] bytes) {
+        ByteBuffer data = ByteBuffer.wrap(bytes)
         data.order(ByteOrder.LITTLE_ENDIAN);
-        HeaderItem headerItem = HeaderItem.parse(data)
-        Log.d("headerItem", headerItem.toString())
-        MapList mapList = MapList.parse(data, headerItem)
-        Log.d("mapList", mapList.toString())
-        StringIds stringIds = StringIds.parse(data, headerItem)
-        Log.d("stringIds", stringIds.toString())
-        TypeIds typeIds = TypeIds.parse(data, headerItem)
-        Log.d("typeIds", typeIds.toString())
-        ProtoIds protoIds = ProtoIds.parse(data, headerItem)
-        Log.d("protoIds", protoIds.toString())
+        headerItem = HeaderItem.parse(data)
+        mapList = MapList.parse(data, headerItem)
+        stringIds = StringIds.parse(data, headerItem)
+        typeIds = TypeIds.parse(data, headerItem)
+        protoIds = ProtoIds.parse(data, headerItem)
     }
 }
