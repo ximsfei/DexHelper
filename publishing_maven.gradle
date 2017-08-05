@@ -1,0 +1,83 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+version = publishVersion
+group = "com.ximsfei"
+
+def siteUrl = 'https://github.com/ximsfei/DexHelper'
+def gitUrl = 'https://github.com/ximsfei/DexHelper.git'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives'] //When uploading configuration files
+    pkg {
+        repo = "ximsfei"
+        name = moduleName
+        desc = descContent
+        websiteUrl = siteUrl
+        issueTrackerUrl = 'https://github.com/ximsfei/DexHelper/issues'
+        vcsUrl = gitUrl
+        licenses = ['Apache-2.0']
+        labels = ['dex', 'analyze', 'android']
+        publicDownloadNumbers = true
+    }
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'jar'
+                name moduleName
+                url siteUrl
+                licenses {
+                    license {
+                        name 'Apache-2.0'
+                        url 'https://github.com/ximsfei/DexHelper/blob/master/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'ximsfei'
+                        name 'Pengfeng Wang'
+                        email 'ximsfei@gmail.com'
+                    }
+                }
+                scm {
+                    connection 'https://github.com/ximsfei/DexHelper/.git'
+                    developerConnection 'https://github.com/ximsfei/DexHelper/.git'
+                    url siteUrl
+
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+task findConventions << {
+    println project.getConvention()
+}

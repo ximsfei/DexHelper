@@ -15,18 +15,10 @@ dependencies {
     compile localGroovy()
 }
 
-apply plugin: 'maven'
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: "file:///Users/ximsfei/local/repo")
-            pom.project {
-                groupId "com.ximsfei"
-                artifactId "dexhelper"
-                version "1.0.0"
-            }
-
-        }
-    }
+ext {
+    publishVersion = '0.0.1'
+    moduleName = 'dexhelper'
+    descContent = 'Dex文件分析工具'
 }
+
+apply from: '../publishing_maven.gradle'
