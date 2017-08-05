@@ -5,7 +5,7 @@
   * 依赖(#依赖)
   * 应用(#应用)
   * 运行(#运行)
-* LICENSE(#)
+* LICENSE(#license-apache)
 
 ## 介绍
 
@@ -43,3 +43,5 @@ $ ./gradlew assemble* -q
 ```
  
 *注: 默认assembleDebug或assembleRelease*
+
+## [License Apache](LICENSE)
