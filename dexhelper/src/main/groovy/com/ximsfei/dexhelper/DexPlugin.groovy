@@ -18,13 +18,14 @@ class DexPlugin implements Plugin<Project> {
                 task.doLast {
                     variant.outputs.each { output ->
                         if (output.outputFile.absolutePath.endsWith(".apk")) {
-                            def apkPath = output.outputFile.absolutePath
-                            def apkFile = new ZipFile(apkPath)
-                            apkFile.entries().each { entry ->
+                            def apkFile = new File(output.outputFile.absolutePath)
+                            def apkZipFile = new ZipFile(apkFile)
+                            Log.d("apk file", apkFile.name)
+                            apkZipFile.entries().each { entry ->
                                 if (entry.name.startsWith("classes")
                                         && entry.name.endsWith(".dex")) {
                                     Log.d("dex file", entry.name)
-                                    DexParser dexParser = new DexParser(apkFile.getInputStream(entry))
+                                    DexParser dexParser = new DexParser(apkZipFile.getInputStream(entry))
                                     Log.d("method size", String.valueOf(dexParser.headerItem.methodIdsSize))
                                 }
                             }
