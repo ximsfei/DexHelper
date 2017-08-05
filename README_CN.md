@@ -39,7 +39,11 @@ apply plugin: 'com.ximsfei.dexhelper'
 ### 运行
 
 ```
-$ ./gradlew assemble* -q
+$ ./gradlew assemble -q
+  DexHelper: apk file -> app-debug.apk
+  DexHelper: dex file -> classes.dex
+  DexHelper: method size -> 27022
+  DexHelper: apk file -> app-release-unsigned.apk
   DexHelper: dex file -> classes.dex
   DexHelper: method size -> 27021
 ```

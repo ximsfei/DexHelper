@@ -39,7 +39,6 @@ $ ./gradlew assemble -q
   DexHelper: apk file -> app-release-unsigned.apk
   DexHelper: dex file -> classes.dex
   DexHelper: method size -> 27021
-
 ```
  
 ## [License Apache](LICENSE)
